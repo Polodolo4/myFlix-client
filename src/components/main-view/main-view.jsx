@@ -33,7 +33,7 @@ class MainView extends React.Component {
         <div>Gladiator</div>
       </div>
     );
-  }
-} */
+  } */
+} 
 
 export default MainView;
