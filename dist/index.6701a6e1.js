@@ -25163,8 +25163,63 @@ module.exports = require('./cjs/scheduler.development.js');
 })();
 
 },{}],"2zHas":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$35bf = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$35bf.prelude(module);
 
-},{}],"jUTZ8":[function() {},{}],"ckeQM":[function(require,module,exports) {
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+class MainView extends _reactDefault.default.Component {
+    render() {
+        return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
+            className: "main-view",
+            __source: {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 7
+            },
+            __self: this,
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                    __source: {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 8
+                    },
+                    __self: this,
+                    children: "Inception"
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                    __source: {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 9
+                    },
+                    __self: this,
+                    children: "The Shawshank Redemption"
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                    __source: {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 10
+                    },
+                    __self: this,
+                    children: "Gladiator"
+                })
+            ]
+        }));
+    }
+}
+exports.default = MainView;
+
+  $parcel$ReactRefreshHelpers$35bf.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"ckeQM","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5YmdR"}],"ckeQM":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -25316,6 +25371,6 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"k9Lw5"}]},["fKlrk","5UEJT","dLPEP"], "dLPEP", "parcelRequireaec4")
+},{"react-refresh/runtime":"k9Lw5"}],"jUTZ8":[function() {},{}]},["fKlrk","5UEJT","dLPEP"], "dLPEP", "parcelRequireaec4")
 
 //# sourceMappingURL=index.6701a6e1.js.map
