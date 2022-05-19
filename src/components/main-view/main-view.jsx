@@ -25,7 +25,7 @@ class MainView extends React.Component {
         );
     }
 
-  render() {
+ /* render() {
     return (
       <div className="main-view">
         <div>Inception</div>
@@ -34,6 +34,6 @@ class MainView extends React.Component {
       </div>
     );
   }
-}
+} */
 
 export default MainView;
