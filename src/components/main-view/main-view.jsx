@@ -1,5 +1,5 @@
 import React from 'react';
-import { MovieCard } from '.components/movie-card/movie-card';
+import { MovieCard } from '../movie-card/movie-card';
 
 class MainView extends React.Component {
 
@@ -21,7 +21,7 @@ class MainView extends React.Component {
     
         return (
         <div className="main-view">
-            {movies.map(movie => <MovieCard />)}
+            {movies.map(movie => <MovieCard key={movie._id} movieData={movie}/>)}
         </div>
         );
     }
