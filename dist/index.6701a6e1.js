@@ -945,7 +945,6 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 // import ReactDOM from 'react-dom';
 var _client = require("react-dom/client");
-var _clientDefault = parcelHelpers.interopDefault(_client);
 var _mainView = require("./components/main-view/main-view");
 var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 // Import statement to indicate that you need to bundle `./index.scss`
@@ -972,7 +971,7 @@ class MyFlixApplication extends _reactDefault.default.Component {
 // Finds the root of your app
 const container = document.getElementsByClassName('app-container')[0];
 // Tells React to render your app in the root DOM element
-_clientDefault.default(container).render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication)); //ReactDOM.render(React.createElement(MyFlixApplication), container);
+_client.createRoot(container).render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication)); //ReactDOM.render(React.createElement(MyFlixApplication), container);
 
   $parcel$ReactRefreshHelpers$b058.postlude(module);
 } finally {
