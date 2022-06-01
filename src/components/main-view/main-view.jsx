@@ -2,7 +2,7 @@ import React from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
 
  constructor(){
     super();
@@ -13,7 +13,7 @@ export class MainView extends React.Component {
         { _id: 3, Title: 'Gladiator', Description: 'desc3...', ImagePath: '...'}
         ],
         selectedMovie: null
-    };
+    }
 }
 
 setSelectedMovie(newSelectedMovie) {
@@ -24,8 +24,6 @@ setSelectedMovie(newSelectedMovie) {
 
   render() {
     const { movies, selectedMovie } = this.state;
-
-    if (selectedMovie) return <MovieView movie={selectedMovie} />;
   
     if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
   
