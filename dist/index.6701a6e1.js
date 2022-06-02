@@ -3797,7 +3797,7 @@ class MainView extends _reactDefault.default.Component {
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                     movie: movie,
-                    onMovieClick: (movie1)=>{
+                    onClick: (movie1)=>{
                         this.setSelectedMovie(movie1);
                     },
                     __source: {
