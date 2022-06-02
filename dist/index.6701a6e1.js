@@ -943,9 +943,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactDom = require("react-dom");
-var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
-//import { createRoot } from 'react-dom/client';
+//import ReactDOM from 'react-dom';
+var _client = require("react-dom/client");
 var _mainView = require("./components/main-view/main-view");
 // Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("./index.scss");
@@ -963,17 +962,18 @@ class MyFlixApplication extends _reactDefault.default.Component {
 }
 // Finds the root of your app
 const container = document.getElementsByClassName('app-container')[0];
-//const root = createRoot(container);
+const root = _client.createRoot(container);
 // Tells React to render your app in the root DOM element
-//root.render(React.createElement(WebFlixApplication))
-_reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication), container);
+ReactDOM.createRoot(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication), container);
+root.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication)) //ReactDOM.render(React.createElement(MyFlixApplication), container);
+;
 
   $parcel$ReactRefreshHelpers$b058.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","./components/main-view/main-view":"2zHas","./index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"ckeQM","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5YmdR","react-dom":"gkWJK"}],"8xIwr":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","./components/main-view/main-view":"2zHas","./index.scss":"jUTZ8","@parcel/transformer-js/src/esmodule-helpers.js":"ckeQM","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5YmdR","react-dom/client":"jdzvJ"}],"8xIwr":[function(require,module,exports) {
 'use strict';
 module.exports = require('./cjs/react-jsx-runtime.development.js');
 
@@ -4125,7 +4125,28 @@ class MovieView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"ckeQM","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5YmdR"}],"jUTZ8":[function() {},{}],"gkWJK":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"ckeQM","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5YmdR"}],"jUTZ8":[function() {},{}],"jdzvJ":[function(require,module,exports) {
+'use strict';
+var m = require('react-dom');
+var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+        return m.createRoot(c, o);
+    } finally{
+        i.usingClientEntryPoint = false;
+    }
+};
+exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+        return m.hydrateRoot(c, h, o);
+    } finally{
+        i.usingClientEntryPoint = false;
+    }
+};
+
+},{"react-dom":"gkWJK"}],"gkWJK":[function(require,module,exports) {
 'use strict';
 function checkDCE() {
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function') return;
