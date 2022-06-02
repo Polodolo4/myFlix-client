@@ -964,7 +964,8 @@ class MyFlixApplication extends _reactDefault.default.Component {
 const container = document.getElementsByClassName('app-container')[0];
 const root = _client.createRoot(container);
 // Tells React to render your app in the root DOM element
-root.render(/*#__PURE__*/ _reactDefault.default.createElement(WebFlixApplication)); //ReactDOM.render(React.createElement(MyFlixApplication), container);
+root.render(/*#__PURE__*/ _reactDefault.default.createElement(WebFlixApplication)) //ReactDOM.render(React.createElement(MyFlixApplication), container);
+;
 
   $parcel$ReactRefreshHelpers$b058.postlude(module);
 } finally {
