@@ -1,25 +1,27 @@
-import React from 'react';
-//import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
-import { MainView } from './components/main-view/main-view';
+import React from "react";
+// import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+import { Container } from "react-bootstrap";
+import { MainView } from "./components/main-view/main-view";
 
-// Import statement to indicate that you need to bundle `./index.scss`
-import './index.scss';
+// Import statement to indicate that you need to bundle ./index.scss;
+import "./index.scss";
 
 // Main component (will eventually use all the others)
 class MyFlixApplication extends React.Component {
   render() {
     return (
-      <MainView />
+      <Container>
+        <MainView />
+      </Container>
     );
   }
 }
 
 // Finds the root of your app
-const container = document.getElementsByClassName('app-container')[0];
-const root = createRoot(container);
+const container = document.getElementsByClassName("app-container")[0];
 
 // Tells React to render your app in the root DOM element
-ReactDOM.createRoot(React.createElement(MyFlixApplication), container);
-root.render(React.createElement(MyFlixApplication))
+createRoot(container).render(React.createElement(MyFlixApplication));
+
 //ReactDOM.render(React.createElement(MyFlixApplication), container);
