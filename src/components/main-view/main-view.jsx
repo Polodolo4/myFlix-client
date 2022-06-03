@@ -34,7 +34,7 @@ setSelectedMovie(newSelectedMovie) {
           {selectedMovie
             ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
             : movies.map(movie => (
-              <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }}/>
+              <MovieCard key={movie._id} movie={movie} onClick={(movie) => { this.setSelectedMovie(movie) }}/>
             ))
           }
         </div>
