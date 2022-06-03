@@ -3833,11 +3833,11 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movie , onMOvieClick  } = this.props;
+        const { movie , onClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
             onClick: ()=>{
-                onMovieClick(movie);
+                onClick(movie);
             },
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
@@ -4105,7 +4105,7 @@ class MovieView extends _reactDefault.default.Component {
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx("button", {
                     onClick: ()=>{
-                        onBackClick(null);
+                        onClick(null);
                     },
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
