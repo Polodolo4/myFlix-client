@@ -3797,7 +3797,7 @@ class MainView extends _reactDefault.default.Component {
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                     movie: movie,
-                    onClick: (movie1)=>{
+                    onMovieClick: (movie1)=>{
                         this.setSelectedMovie(movie1);
                     },
                     __source: {
@@ -3833,11 +3833,11 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movie , onClick  } = this.props;
+        const { movie , onMovieClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
             onClick: ()=>{
-                onClick(movie);
+                onMovieClick(movie);
             },
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
