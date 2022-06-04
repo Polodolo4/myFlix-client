@@ -946,12 +946,13 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 //import ReactDOM from 'react-dom';
 var _client = require("react-dom/client");
 var _mainView = require("./components/main-view/main-view");
+var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 // Import statement to indicate that you need to bundle `./index.scss`
 var _indexScss = require("./index.scss");
 // Main component (will eventually use all the others)
 class MyFlixApplication extends _reactDefault.default.Component {
     render() {
-        return(/*#__PURE__*/ _jsxRuntime.jsx(_mainView.MainView, {
+        return(/*#__PURE__*/ _jsxRuntime.jsx(_mainViewDefault.default, {
             __source: {
                 fileName: "src/index.jsx",
                 lineNumber: 13
@@ -964,8 +965,8 @@ class MyFlixApplication extends _reactDefault.default.Component {
 const container = document.getElementsByClassName('app-container')[0];
 const root = _client.createRoot(container);
 // Tells React to render your app in the root DOM element
+//ReactDOM.render(React.createElement(MyFlixApplication), container);
 root.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication));
-ReactDOM.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication), container);
 
   $parcel$ReactRefreshHelpers$b058.postlude(module);
 } finally {
@@ -3761,20 +3762,20 @@ class MainView extends _reactDefault.default.Component {
     }
     render() {
         const { movies , selectedMovie  } = this.state;
-        if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-            className: "main-view",
+        if (selectedMovie) return(/*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
+            movie: selectedMovie,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 28
             },
-            __self: this,
-            children: "The list is empty!"
+            __self: this
         }));
+        //if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 31
+                lineNumber: 33
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -3784,17 +3785,17 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 33
+                    lineNumber: 35
                 },
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                     movie: movie,
-                    onMovieClick: (movie1)=>{
+                    onClick: (movie1)=>{
                         this.setSelectedMovie(movie1);
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 35
+                        lineNumber: 37
                     },
                     __self: this
                 }, movie._id)
