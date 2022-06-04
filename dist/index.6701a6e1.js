@@ -964,8 +964,8 @@ class MyFlixApplication extends _reactDefault.default.Component {
 const container = document.getElementsByClassName('app-container')[0];
 const root = _client.createRoot(container);
 // Tells React to render your app in the root DOM element
-root.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication)) //ReactDOM.render(React.createElement(MyFlixApplication), container);
-;
+root.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication));
+ReactDOM.render(/*#__PURE__*/ _reactDefault.default.createElement(MyFlixApplication), container);
 
   $parcel$ReactRefreshHelpers$b058.postlude(module);
 } finally {
@@ -3789,7 +3789,7 @@ class MainView extends _reactDefault.default.Component {
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                     movie: movie,
-                    onClick: (movie1)=>{
+                    onMovieClick: (movie1)=>{
                         this.setSelectedMovie(movie1);
                     },
                     __source: {
@@ -3825,11 +3825,11 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movie , onClick  } = this.props;
+        const { movie  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
             onClick: ()=>{
-                onClick(movie);
+                this.state.selectedMovie = movie;
             },
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
@@ -4097,7 +4097,7 @@ class MovieView extends _reactDefault.default.Component {
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx("button", {
                     onClick: ()=>{
-                        onClick(null);
+                        onBackClick(null);
                     },
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
