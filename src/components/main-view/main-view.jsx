@@ -25,7 +25,8 @@ setSelectedMovie(newSelectedMovie) {
   render() {
     const { movies, selectedMovie } = this.state;
 
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+    if (selectedMovie) return <MovieView movie={selectedMovie} />;
+  
   
     return (
         <div className="main-view">
