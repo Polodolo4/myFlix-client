@@ -26989,16 +26989,17 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _registrationView = require("../registration-view/registration-view");
 var _loginView = require("../login-view/login-view");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
-var _registrationView = require("../registration-view/registration-view");
 class MainView extends (0, _reactDefault.default).Component {
     constructor(){
         super();
         this.state = {
             movies: [],
             selectedMovie: null,
+            registered: null,
             user: null
         };
     }
@@ -27016,9 +27017,9 @@ class MainView extends (0, _reactDefault.default).Component {
             selectedMovie: newSelectedMovie
         });
     }
-    onRegistration(register) {
+    onRegister(registered) {
         this.setState({
-            register
+            registered
         });
     }
     onLoggedIn(user) {
@@ -27027,26 +27028,26 @@ class MainView extends (0, _reactDefault.default).Component {
         });
     }
     render() {
-        const { movies , selectedMovie , user: user1 , register: register1  } = this.state;
-        if (!register1) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registrationView.RegistrationView), {
-            onRegistration: (register)=>this.onRegistration(register)
+        const { movies , selectedMovie , user: user1 , registered  } = this.state;
+        if (!registered) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registrationView.RegistrationView), {
+            onRegister: (register)=>this.onRegister(register)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 54,
-            columnNumber: 28
+            lineNumber: 55,
+            columnNumber: 30
         }, this);
         if (!user1) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
             onLoggedIn: (user)=>this.onLoggedIn(user)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 56,
+            lineNumber: 57,
             columnNumber: 24
         }, this);
         if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "main-view"
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 58,
+            lineNumber: 59,
             columnNumber: 37
         }, this);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27058,7 +27059,7 @@ class MainView extends (0, _reactDefault.default).Component {
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 63,
+                lineNumber: 64,
                 columnNumber: 13
             }, this) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                     movie: movie,
@@ -27067,12 +27068,12 @@ class MainView extends (0, _reactDefault.default).Component {
                     }
                 }, movie._id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 65,
+                    lineNumber: 66,
                     columnNumber: 13
                 }, this))
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 61,
+            lineNumber: 62,
             columnNumber: 7
         }, this);
     }
@@ -31264,7 +31265,7 @@ function RegistrationView(props) {
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log(username, password, email, birthday);
-        props.onRegistration(false);
+        props.onRegister(true);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         children: [
