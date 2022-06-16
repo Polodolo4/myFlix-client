@@ -31164,7 +31164,8 @@ MovieView.propTypes = {
             Death: (0, _propTypesDefault.default).string.isRequired
         }),
         ImagePath: (0, _propTypesDefault.default).string.isRequired
-    }).isRequired
+    }).isRequired,
+    onBackClick: (0, _propTypesDefault.default).func.isRequired
 };
 
   $parcel$ReactRefreshHelpers$e9f6.postlude(module);
