@@ -41,7 +41,7 @@ setSelectedMovie(newSelectedMovie) {
 
   onRegister(registered) {
     this.setState({
-      registered,
+      registered
     });
   }
 
