@@ -52,6 +52,7 @@ setSelectedMovie(newSelectedMovie) {
   }
 
   render() {
+    
     const { movies, selectedMovie, user, registered } = this.state;
    
     if (!registered) return (<RegistrationView onRegister={(register) => this.onRegister(register)}/>);
