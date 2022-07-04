@@ -27358,7 +27358,11 @@ class MainView extends (0, _reactDefault.default).Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
+<<<<<<< HEAD
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../registration-view/registration-view":"3U8r7","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","../genre-view/genre-view":"4tuA0","../director-view/director-view":"9tpci","../profile-view/profile-view":"2vVqf","../navbar/navbar":"bNPgg"}],"jo6P5":[function(require,module,exports) {
+=======
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../registration-view/registration-view":"3U8r7","react-router-dom":"cHIiW","../genre-view/genre-view":"4tuA0","../director-view/director-view":"9tpci","../profile-view/profile-view":"2vVqf","react-bootstrap":"3AD9A","../navbar/navbar":"bNPgg"}],"jo6P5":[function(require,module,exports) {
+>>>>>>> 02112b5f4e99f34b33d0cfbb5e88fcb9e99f4eb8
 module.exports = require("./lib/axios");
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
