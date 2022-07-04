@@ -88,7 +88,7 @@ export function RegistrationView(props) {
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
                     required
-                    placeholder='Enter your password (must be 8 or more characters)'
+                    placeholder='Enter your password (must be 6 or more characters)'
                     minLength='8'
                   />
                    {passwordErr && <p>{passwordErr}</p>}

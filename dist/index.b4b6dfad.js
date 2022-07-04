@@ -40231,7 +40231,7 @@ function RegistrationView(props) {
                                                     value: password,
                                                     onChange: (e)=>setPassword(e.target.value),
                                                     required: true,
-                                                    placeholder: "Enter your password (must be 8 or more characters)",
+                                                    placeholder: "Enter your password (must be 6 or more characters)",
                                                     minLength: "8"
                                                 }, void 0, false, {
                                                     fileName: "src/components/registration-view/registration-view.jsx",
@@ -40390,7 +40390,6 @@ parcelHelpers.export(exports, "GenreView", ()=>GenreView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-//import './genre-view.scss'
 var _reactBootstrap = require("react-bootstrap");
 class GenreView extends (0, _reactDefault.default).Component {
     render() {
@@ -40457,7 +40456,6 @@ parcelHelpers.export(exports, "DirectorView", ()=>DirectorView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-//import './director-view.scss';
 var _reactBootstrap = require("react-bootstrap");
 class DirectorView extends (0, _reactDefault.default).Component {
     render() {
