@@ -9,6 +9,7 @@ export function LoginView(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 <<<<<<< HEAD
+<<<<<<< HEAD
         axios.post('https://brett-flix.herokuapp.com/login', {
             Username: username,
             Password: password
@@ -20,6 +21,10 @@ export function LoginView(props) {
         .catch(e => {
             console.log('no such user')
         });
+=======
+        console.log(username, password);
+        props.onLoggedIn(username);
+>>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
 =======
         console.log(username, password);
         props.onLoggedIn(username);

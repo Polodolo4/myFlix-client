@@ -2,8 +2,11 @@ import React from 'react';
 import axios from 'axios';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+=======
+>>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
 =======
 >>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
 import { RegistrationView } from '../registration-view/registration-view';
@@ -11,9 +14,14 @@ import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import { Row, Col } from 'react-bootstrap';
 import Navbar from '../Navbar/Navbar';
+=======
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+>>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
 =======
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -67,6 +75,7 @@ setSelectedMovie(newSelectedMovie) {
     const { movies, selectedMovie, user, registered } = this.state;
    
     if (!registered) return (<RegistrationView onRegister={(register) => this.onRegister(register)}/>);
+<<<<<<< HEAD
 
 <<<<<<< HEAD
     if (!user) return <Row>
@@ -75,11 +84,18 @@ setSelectedMovie(newSelectedMovie) {
       </Col>
     </Row>
     if (movies.length === 0) return <div className="main-view" />;
+=======
+>>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
 
-    return (
-      <Router>
-        <Navbar user={user}/>
+    if (!user) return (<LoginView onLoggedIn={user => this.onLoggedIn(user)} />);
+
+    //if (selectedMovie) return <MovieView movie={selectedMovie} />;
+
+    if (movies.length === 0) return <div className="main-view" />;
+  
+      return (
         <Row className="main-view justify-content-md-center">
+<<<<<<< HEAD
 
           <Route path="/login" render={() => {
             if (user) return <Redirect to="/" />
@@ -141,6 +157,20 @@ setSelectedMovie(newSelectedMovie) {
   
       return (
         <Row className="main-view justify-content-md-center">
+          {selectedMovie
+            ? (
+              <Col md={8}>
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            )
+            : movies.map(movie => (
+              <Col md={3}>
+                <MovieCard key={movie._id} movie={movie} onClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
+              </Col>
+            ))
+          }
+>>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
+=======
           {selectedMovie
             ? (
               <Col md={8}>
