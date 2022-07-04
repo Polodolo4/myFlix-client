@@ -23,7 +23,7 @@ return (
 
 <Navbar className="main-nav" sticky="top" bg="dark" expand="lg" variant="dark">
     <Container>
-    <Navbar.Brand className="navbar-logo" href="/">BrettFlix</Navbar.Brand>
+    <Navbar.Brand className="navbar-logo" href="/">myFlixCinema</Navbar.Brand>
         <Navbar.Toggle aria-controls="resposive-navbar-nav" />
         <Navbar.Collapse id="reponsive-navbar-nav">
             <Nav className="ml-auto">
@@ -31,7 +31,7 @@ return (
                 <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>
                 )}
             {isAuth() && (
-                <Button variant="link" onClick={onLoggedOut}>Logout</Button>
+                <Button variant="link" onClick={() => {this.onLoggedout() }}>Logout</Button>
             )}
             {!isAuth() && (
               <Nav.Link href={"/"}>Sign-in</Nav.Link>
