@@ -1,5 +1,5 @@
 import React from 'react';
-
+//import './director-view.scss';
 import { Card, Button } from 'react-bootstrap';
 
 export class DirectorView extends React.Component {
@@ -19,4 +19,4 @@ export class DirectorView extends React.Component {
       </Card>
     )
   }
-}
+} 

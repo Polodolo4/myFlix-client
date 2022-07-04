@@ -1,34 +1,51 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';  
 
 export function LoginView(props) {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ usernameErr, setUsernameErr ] = useState('');
+    const [ passwordErr, setPasswordErr ] = useState('');
+  
+    // validate user inputs
+    const validate = () => {
+      let isReq = true;
+      if (!username) {
+        setUsernameErr('Username required');
+        isReq= false;
+      } else if (username.length < 2) {
+        setUsernameErr('Username must be at least 2 characters long');
+        isReq = false;
+      }
+      if (!password) {
+        setPasswordErr('Password required');
+        isReq = false;
+      } else if (password.length < 6) {
+        setPasswordErr('Password must be at least 6 characters long');
+        isReq = false;
+      }
+      return isReq;
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        axios.post('https://brett-flix.herokuapp.com/login', {
-            Username: username,
-            Password: password
-        })
-        .then(response => {
-            const data = response.data;
-            props.onLoggedIn(data);
-        })
-        .catch(e => {
-            console.log('no such user')
-        });
-=======
-        console.log(username, password);
-        props.onLoggedIn(username);
->>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
-=======
-        console.log(username, password);
-        props.onLoggedIn(username);
->>>>>>> parent of 71e9114 (Merge pull request #1 from Polodolo4/Tasks)
+        const isReq = validate();
+        if (isReq) {
+
+            axios.post('https://brett-flix.herokuapp.com/login', {
+                Username: username,
+                Password: password
+            })
+            .then(response => {
+                const data = response.data;
+                props.onLoggedIn(data);
+            })
+            .catch(e => {
+                console.log('no such user')
+            });
+        }
     };
 
     return (
@@ -47,7 +64,8 @@ export function LoginView(props) {
                                     onChange={e => setUsername(e.target.value)}
                                     required
                                     placeholder='Enter your username'
-                                    />
+                                />
+                                {usernameErr && <p>{usernameErr}</p>}
                             </Form.Group>
 
                             <Form.Group controlId='formPassword'>
@@ -57,7 +75,8 @@ export function LoginView(props) {
                                     onChange={e => setPassword(e.target.value)} 
                                     required
                                     placeholder='Enter your password'
-                                    />
+                                />
+                                {passwordErr && <p>{passwordErr}</p>}
                             </Form.Group>
 
                             <Button 
