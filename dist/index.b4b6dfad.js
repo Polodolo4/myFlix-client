@@ -41072,7 +41072,7 @@ function UpdateView(props) {
                                     variant: "warning",
                                     type: "submit",
                                     onClick: handleSubmit,
-                                    children: "Edit profile"
+                                    children: "Update profile"
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/update-view.jsx",
                                     lineNumber: 100,
