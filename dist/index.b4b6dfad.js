@@ -40760,24 +40760,22 @@ $parcel$ReactRefreshHelpers$9686.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "FavoriteMovieView", ()=>FavoriteMovieView);
+parcelHelpers.export(exports, "FavoriteMoviesView", ()=>FavoriteMoviesView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
-function FavoriteMovieView(props) {
+function FavoriteMoviesView(props) {
     const { movies , favoriteMovies , currentUser , token  } = props;
     const favoriteMoviesId = favoriteMovies.map((m)=>m._id);
     const favoriteMoviesList = movies.filter((m)=>{
         return favoriteMoviesId.includes(m._id);
     });
     const handleMovieDelete = (movieId)=>{
-        (0, _axiosDefault.default).delete(`https://movime-api.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
+        (0, _axiosDefault.default).delete(`https://brett-flix.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -40788,7 +40786,7 @@ function FavoriteMovieView(props) {
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _react.Fragment), {
         children: favoriteMoviesList.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-            children: "You have no favorite movies yet."
+            children: "No favorite movies...add some!"
         }, void 0, false, {
             fileName: "src/components/profile-view/favorite-movie-view.jsx",
             lineNumber: 31,
@@ -40800,7 +40798,6 @@ function FavoriteMovieView(props) {
                 md: 6,
                 lg: 4,
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-                    id: "movie-card",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             to: `/movies/${movie._id}`,
@@ -40887,16 +40884,16 @@ function FavoriteMovieView(props) {
         columnNumber: 5
     }, this);
 }
-_c = FavoriteMovieView;
+_c = FavoriteMoviesView;
 var _c;
-$RefreshReg$(_c, "FavoriteMovieView");
+$RefreshReg$(_c, "FavoriteMoviesView");
 
   $parcel$ReactRefreshHelpers$9686.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","axios":"jo6P5","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fs4jm":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fs4jm":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b77c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
