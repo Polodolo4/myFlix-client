@@ -94,7 +94,7 @@ export function UpdateView(props) {
               </Form.Group>
               <Form.Group controlId="formBirthday">
                 <Form.Label>Birthday:</Form.Label>
-                <Form.Control type="text" value={birthday} onChange={e => setBirthday(e.target.value)} placeholder="DD-MM-YYYY" />
+                <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} placeholder="DD-MM-YYYY" />
               </Form.Group>
               <Form.Group controlId="formBirthday" className="mt-3">
                 <Button  variant="warning" type="submit" onClick={handleSubmit}>Update profile</Button>

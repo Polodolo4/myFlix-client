@@ -41127,7 +41127,7 @@ function UpdateView(props) {
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                                        type: "text",
+                                        type: "date",
                                         value: birthday,
                                         onChange: (e)=>setBirthday(e.target.value),
                                         placeholder: "DD-MM-YYYY"
