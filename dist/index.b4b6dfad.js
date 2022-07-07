@@ -40760,7 +40760,7 @@ $parcel$ReactRefreshHelpers$9686.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "FavoriteMoviesView", ()=>FavoriteMoviesView);
+parcelHelpers.export(exports, "FavoriteMovieView", ()=>FavoriteMovieView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
@@ -40768,7 +40768,7 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
-function FavoriteMoviesView(props) {
+function FavoriteMovieView(props) {
     const { movies , favoriteMovies , currentUser , token  } = props;
     const favoriteMoviesId = favoriteMovies.map((m)=>m._id);
     const favoriteMoviesList = movies.filter((m)=>{
@@ -40884,9 +40884,9 @@ function FavoriteMoviesView(props) {
         columnNumber: 5
     }, this);
 }
-_c = FavoriteMoviesView;
+_c = FavoriteMovieView;
 var _c;
-$RefreshReg$(_c, "FavoriteMoviesView");
+$RefreshReg$(_c, "FavoriteMovieView");
 
   $parcel$ReactRefreshHelpers$9686.postlude(module);
 } finally {
