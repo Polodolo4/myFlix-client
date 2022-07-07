@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Button, Card, Col } from 'react-bootstrap';
 
-export function FavoriteMoviesView(props) {
+export function FavoriteMovieView(props) {
   const { movies, favoriteMovies, currentUser, token } = props;
 
   const favoriteMoviesId = favoriteMovies.map(m => m._id)
