@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
-import { FavoriteMoviesView } from './favorite-movie-view';
+import { FavoriteMovieView } from './favorite-movie-view';
 import { UpdateView } from './update-view';
 import { UserInfo } from './user-info';
 
@@ -56,7 +56,7 @@ export function ProfileView(props) {
 
         <Row className="mt-5"><h4>Your favorite movies</h4></Row>
         <Row className="mt-3">
-      <FavoriteMoviesView 
+      <FavoriteMovieView 
           movies={movies} 
           favoriteMovies={favoriteMovies} 
           currentUser={currentUser} 
