@@ -1,5 +1,5 @@
 import React from 'react';
-
+//import './genre-view.scss'
 import { Card, Button } from 'react-bootstrap';
 
 export class GenreView extends React.Component {
@@ -19,4 +19,4 @@ export class GenreView extends React.Component {
     )
   }
 
-}
+} 

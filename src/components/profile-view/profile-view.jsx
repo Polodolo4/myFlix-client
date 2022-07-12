@@ -52,15 +52,8 @@ export function ProfileView(props) {
           <UpdateView user={user}/>
         </Col>
       </Row>
-
-
-        <Row className="mt-5"><h4>Your favorite movies</h4></Row>
         <Row className="mt-3">
-      <FavoriteMovieView 
-          movies={movies} 
-          favoriteMovies={favoriteMovies} 
-          currentUser={currentUser} 
-          token={token}/>
+      <FavoriteMovieView  movies={movies}  favoriteMovies={favoriteMovies}  currentUser={currentUser}  token={token}/>
         </Row>
         <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>Delete profile</Button>
     </Container>

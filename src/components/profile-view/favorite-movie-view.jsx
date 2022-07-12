@@ -27,12 +27,12 @@ export function FavoriteMovieView(props) {
 
   return (
     <Fragment>
-      {favoriteMoviesList.length === 0 ? (
+      {favoriteMovies.length === 0 ? (
           <p>No favorite movies...add some!</p>
           ) : (
-            favoriteMoviesList.map((movie) => {
+            favoriteMovies.map((movie) => {
               return (
-              <Col xs={10} sm={8} md={6} lg={4} >
+              <Col xs={12} sm={8} md={6} lg={4} >
                 <Card>
                   <Link to={`/movies/${movie._id}`}>
                     <Card.Img variant="top" src={movie.ImagePath} />
@@ -40,10 +40,7 @@ export function FavoriteMovieView(props) {
                   <Card.Body>
                     <Card.Title>{movie.Title}</Card.Title>
                     <Card.Text>{movie.Description}</Card.Text>
-                    <Link to={`/movies/${movie._id}`}>
-                      <Button className="button" variant="outline-primary" size="sm">Open</Button>
-                    </Link>
-                    <Button  className="button ml-2"  variant="outline-primary" size="sm" onClick={()=> {handleMovieDelete(movie._id)}} >Remove</Button>
+                    <Button  className="button ml-3"  variant="outline-danger" size="sm" onClick={()=> {handleMovieDelete(movie._id)}} >Remove!</Button>
                   </Card.Body>
                 </Card>
               </Col>
