@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function UserInfo ({name, password, birthday, email, favoriteMovies}) {
+export function UserInfo ({name, password, birthday, email}) {
     return (
         <>
             <p>User: {name}</p>
