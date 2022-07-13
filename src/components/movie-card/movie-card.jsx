@@ -15,7 +15,7 @@ export class MovieCard extends React.Component {
               <Col>
                 <CardGroup> 
                   <Card>
-                    <Card.Img variant='top' src={movie.ImagePath} />
+                    <Card.Img variant='top' src={`https://brett-flix.herokuapp.com/${movie.ImagePath}`} />
                     <Card.Body>
                       <Card.Title>{movie.Title}</Card.Title>
                       <Card.Text>{movie.Description}</Card.Text>
