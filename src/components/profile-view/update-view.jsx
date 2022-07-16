@@ -59,7 +59,7 @@ export function UpdateView(props) {
       .then(response => {
         console.log(response.data);
         alert('Profile was successfully updated.');
-        window.open('/users/:username', '_self');
+        window.open(`/users/${user.Username}`, '_self');
       })
       .catch(error => {
         console.error(error);

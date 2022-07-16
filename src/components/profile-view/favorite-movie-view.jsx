@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -6,35 +6,22 @@ import { Link } from 'react-router-dom';
 import { Button, Card, Col } from 'react-bootstrap';
 
 export function FavoriteMovieView(props) {
-  const [ user, setUser ] = useState(props.user);
-  const [ favoriteMovies, setFavoriteMovies ] = useState([]);
 
-  const { currentUser, token } = props;
+ const { movies, currentUser, token, favoriteMovies } = props;
 
- 
+const userFavorites = movies.filter((movie) => {
+  return favoriteMovies.includes(movie._id);
+});
 
-  const getUser = () => {
-    axios.get(`https://brett-flix.herokuapp.com/users/${currentUser}`, {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(response => {
-      setUser(response.data);
-      setFavoriteMovies(response.data.FavoriteMovies)
-    })
-    .catch(error => console.error(error))
-  }
-
-  useEffect(() => {
-    getUser();
-  }, [])
 
   const handleMovieDelete = (movieId) => {
     axios.delete(`https://brett-flix.herokuapp.com/users/${currentUser}/movies/${movieId}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
-    .then(() => {
-      alert(`The movie was successfully deleted.`)
-      window.open('/users/:username', '_self');
+    .then(response => {
+      console.log(response.data);
+      alert(`${movieId} has been removed from your favorites!`);
+      window.open(`/users/${currentUser}`, '_self');
     }).
     catch(error => console.error(error))
   }
@@ -45,7 +32,7 @@ export function FavoriteMovieView(props) {
       {favoriteMovies.length === 0 ? (
           <p>No favorite movies...add some!</p>
           ) : (
-            favoriteMovies.map((movie) => {
+            userFavorites.map((movie) => {
               return (
               <Col xs={12} sm={8} md={6} lg={4} >
                 <Card>
