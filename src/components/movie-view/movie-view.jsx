@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 
+import './movie-view.scss';
+
 export class MovieView extends React.Component {
 
   constructor() {
@@ -89,7 +91,7 @@ export class MovieView extends React.Component {
               <Col>
                 <CardGroup> 
                   <Card>
-                    <Card.Img variant="top" src={`https://brett-flix.herokuapp.com/${movie.ImagePath}`} />
+                    <Card.Img className="poster-img" variant="top" src={`https://brett-flix.herokuapp.com/${movie.ImagePath}`} />
                     <Card.Body>
                       <Card.Title>{movie.Title}</Card.Title>
                       <Card.Text>{movie.Description}</Card.Text>
