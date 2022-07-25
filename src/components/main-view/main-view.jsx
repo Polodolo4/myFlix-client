@@ -1,11 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+
+import { setMovies, setUser } from '../../actions/actions';
+
+import MoviesList from '../movies-list/movies-list';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
+//import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
@@ -15,24 +21,24 @@ import { Row, Col } from 'react-bootstrap';
 import { Navbar } from '../navbar/navbar';
 
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
 
  constructor(){
     super();
 
     this.state = {
-        movies: [],
         user: null
-    }
+    };
 }
 
 componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({
+      /*this.setState({
         user: localStorage.getItem('user')
-      });
+      });*/
       this.getMovies(accessToken);
+      this.props.setUser(localStorage.getItem('user'));
     }
 }
 
@@ -49,13 +55,15 @@ setSelectedMovie(newSelectedMovie) {
   }
 
   onLoggedIn(authData) {
-    console.log(authData);
+  /*  console.log(authData);
     this.setState({
       user: authData.user.Username
-    });
+    });*/
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
+    const { setUser } = this.props;
+    setUser(authData.user.Username);
     this.getMovies(authData.token);
   }
 
@@ -64,9 +72,7 @@ setSelectedMovie(newSelectedMovie) {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      this.setState({
-        movies: response.data
-      });
+      this.props.setMovies(response.data);
     })
     .catch(function(error) {
       console.log(error);
@@ -76,14 +82,14 @@ setSelectedMovie(newSelectedMovie) {
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.setState({
-      user: null
-    });
+    this.props.setUser('');
   }
 
 
   render() {
-    const { movies, user } = this.state;
+  
+    let { user, movies } = this.props;
+ 
 
     return (
       <Router>
@@ -96,19 +102,10 @@ setSelectedMovie(newSelectedMovie) {
           </Col>
           if (movies.length === 0) return <div className="main-view"></div>
 
-          return movies.map(m => (
-            <Col md={3} key={m._id}>
-              <MovieCard movie={m} />
-            </Col>
-          ))
-        }} />
+          return <MoviesList movies={movies}/>; 
+        }}/>
 
-          <Route path="/login" render={() => {
-            if (user) return <Redirect to="/" />
-            return <Col md={8}>
-              <LoginView />
-            </Col>
-          }} />
+         
 
           <Route path="/register" render={() => {
             if (user) return <Redirect to="/" />
@@ -164,3 +161,23 @@ setSelectedMovie(newSelectedMovie) {
     );
   }
 }
+
+let mapStateToProps = store => {
+  return { 
+    movies: store.movies,
+    user: store.user,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setUser: (user) => {
+      dispatch(setUser(user))
+    },
+    setMovies: (movies) => {
+      dispatch(setMovies(movies))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (MainView);

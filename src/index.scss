@@ -1,5 +1,14 @@
-$color: steelblue;
+$primary-color: #038242;
 
-.my-flix {
-  color: $color;
+.container {
+  max-width: 100% !important;
+}
+* {
+ box-sizing: border-box;
+}
+
+body {
+  background-color: $primary-color !important;
+  font-family: 'Caveat', cursive !important;
+  
 }

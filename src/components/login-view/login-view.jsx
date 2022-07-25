@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';  
+import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap'; 
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions'; 
 
 export function LoginView(props) {
     const [ username, setUsername ] = useState('');
@@ -25,7 +27,7 @@ export function LoginView(props) {
       } else if (password.length < 6) {
         setPasswordErr('Password must be at least 6 characters long');
         isReq = false;
-      }
+      } 
       return isReq;
     }
 
@@ -95,6 +97,14 @@ export function LoginView(props) {
         </Container>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    };
+}
+
+export default connect(mapStateToProps, { setUser })(LoginView);
 
 LoginView.propTypes = {
     user: PropTypes.shape({

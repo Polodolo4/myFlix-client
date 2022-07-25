@@ -1,21 +1,24 @@
-.screenshot {
-  object-fit: cover;
-  object-position: 50% 50%;
-  width: 100%;
-  max-width: 400px;
-  max-height: 400px;
+.indiv-view {
+  text-align: justify;
+  margin: 3vw 0;
 }
 
-.add-list__button {
-  margin-left: 10px;
+.poster-img {
+  height: 30em;
+  object-fit: contain;
 }
 
-.movie-view__card {
-  margin: 20px;
+.container {
+  max-width: 100% !important;
 }
 
-.my-flix {
-  color: #4682b4;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #038242 !important;
+  font-family: Caveat, cursive !important;
 }
 
 /*# sourceMappingURL=index.5f1df611.css.map */
