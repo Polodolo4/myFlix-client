@@ -12236,8 +12236,7 @@ RegistrationView.propTypes = {
         Password: (0, _propTypesDefault.default).string.isRequired,
         Email: (0, _propTypesDefault.default).string.isRequired,
         Birthday: (0, _propTypesDefault.default).number.isRequired
-    }),
-    onRegister: (0, _propTypesDefault.default).func.isRequired
+    })
 };
 var _c;
 $RefreshReg$(_c, "RegistrationView");
@@ -42659,8 +42658,7 @@ MovieCard.propTypes = {
             Death: (0, _propTypesDefault.default).string.isRequired
         }),
         ImagePath: (0, _propTypesDefault.default).string.isRequired
-    }).isRequired,
-    onClick: (0, _propTypesDefault.default).func.isRequired
+    }).isRequired
 };
 
   $parcel$ReactRefreshHelpers$67b2.postlude(module);

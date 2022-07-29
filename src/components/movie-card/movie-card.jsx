@@ -49,5 +49,4 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string.isRequired,
    
   }).isRequired,
-  onClick: PropTypes.func.isRequired
 };

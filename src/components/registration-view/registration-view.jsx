@@ -142,5 +142,4 @@ RegistrationView.propTypes = {
     Email: PropTypes.string.isRequired,
     Birthday: PropTypes.number.isRequired,
   }),
-    onRegister: PropTypes.func.isRequired,
 };
