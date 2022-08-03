@@ -1,5 +1,6 @@
 {
   "name": "myflix-client",
+  "main": "src/index.html",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -17,7 +18,7 @@
   "homepage": "https://github.com/Polodolo4/myFlix-client#readme",
   "dependencies": {
     "axios": "^0.27.2",
-    "parcel": "^2.6.0",
+    "parcel": "^2.0.0-rc.0",
     "react": "^18.1.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
