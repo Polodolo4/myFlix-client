@@ -1,6 +1,7 @@
 {
   "name": "myflix-client",
   "version": "1.0.0",
+  "main": "src/index.html",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,8 +17,11 @@
   },
   "homepage": "https://github.com/Polodolo4/myFlix-client#readme",
   "dependencies": {
+    "@parcel/reporter-dev-server": "^2.7.0",
     "axios": "^0.27.2",
+    "buffer": "^6.0.3",
     "parcel": "^2.6.0",
+    "parcel-bundler": "^1.12.5",
     "react": "^18.1.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
@@ -27,7 +31,7 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.6.0",
+    "@parcel/transformer-sass": "^2.7.0",
     "process": "^0.11.10"
   }
 }
