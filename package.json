@@ -1,6 +1,5 @@
 {
   "name": "myflix-client",
-  "main": "src/index.js",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -18,7 +17,7 @@
   "homepage": "https://github.com/Polodolo4/myFlix-client#readme",
   "dependencies": {
     "axios": "^0.27.2",
-    "parcel": "^2.0.0-rc.0",
+    "parcel": "^2.6.0",
     "react": "^18.1.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.1.0",
@@ -28,7 +27,7 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "2.0.0",
+    "@parcel/transformer-sass": "^2.6.0",
     "process": "^0.11.10"
   }
 }
