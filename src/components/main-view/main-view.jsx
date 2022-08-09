@@ -18,7 +18,7 @@ import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 import { Row, Col } from 'react-bootstrap';
-import { Menubar } from '../navbar/navbar';
+import { Navbar } from '../navbar/navbar';
 
 
 class MainView extends React.Component {
@@ -93,7 +93,7 @@ setSelectedMovie(newSelectedMovie) {
 
     return (
       <Router>
-        <Menubar user={user}/>
+        <Navbar user={user}/>
         <Row className="main-view justify-content-md-center">
 
         <Route exact path="/" render={() => {
