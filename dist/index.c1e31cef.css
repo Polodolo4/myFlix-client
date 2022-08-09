@@ -1,0 +1,22 @@
+.indiv-view {
+  margin: 3vw 0;
+  text-align: justify;
+}
+
+.poster-img {
+  height: 30em;
+  object-fit: contain;
+}
+.container {
+  max-width: 100% !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #038242 !important;
+  font-family: "Caveat", cursive !important;
+}
+/*# sourceMappingURL=index.c1e31cef.css.map */
