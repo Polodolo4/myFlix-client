@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build src/index.html --out-dir public"
+    "build": "parcel build src/index.html --out-dir public --no-cache && node postbuild.js"
   },
   "repository": {
     "type": "git",
