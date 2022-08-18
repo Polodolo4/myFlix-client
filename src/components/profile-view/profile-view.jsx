@@ -9,29 +9,13 @@ import { UpdateView } from './update-view';
 import { UserInfo } from './user-info';
 
 export function ProfileView(props) {
-  const [ user, setUser ] = useState(props.user);
-  const [ movies, setMovies ] = useState(props.movies);
-  const [ favoriteMovies, setFavoriteMovies ] = useState([]);
-  const currentUser = localStorage.getItem('user');
-  const token = localStorage.getItem('token');
-
-  const getUser = () => {
-    axios.get(`https://brett-flix.herokuapp.com/users/${currentUser}`, {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then(response => {
-      setUser(response.data);
-      setFavoriteMovies(response.data.FavoriteMovies)
-    })
-    .catch(error => console.error(error))
-  }
-
-  useEffect(() => {
-    getUser();
-  }, [])
+  const [ user ] = useState(props.user);
+  const [ movies ] = useState(props.movies);
+  const [ favoriteMovies ] = useState(props.favoriteMovies);
+  const token = props.token;
 
   const handleDelete = () => {
-    axios.delete(`https://brett-flix.herokuapp.com/users/${currentUser}`, {
+    axios.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(() => {

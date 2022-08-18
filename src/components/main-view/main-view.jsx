@@ -31,16 +31,16 @@ class MainView extends React.Component {
     };
 }
 
-componentDidMount() {
+/*componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       /*this.setState({
         user: localStorage.getItem('user')
-      });*/
+      });
       this.getMovies(accessToken);
       this.props.setUser(localStorage.getItem('user'));
     }
-}
+}*/
 
 setSelectedMovie(newSelectedMovie) {
     this.setState({
@@ -54,16 +54,16 @@ setSelectedMovie(newSelectedMovie) {
     });
   }
 
-  onLoggedIn(authData) {
+  onLoggedIn = (authData) => {
   /*  console.log(authData);
     this.setState({
       user: authData.user.Username
     });*/
 
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    const { setUser } = this.props;
-    setUser(authData.user.Username);
+    //localStorage.setItem('token', authData.token);
+    //localStorage.setItem('user', authData.user.Username);
+    //const { setUser } = this.props;
+    this.props.setUser(authData);
     this.getMovies(authData.token);
   }
 
@@ -82,7 +82,7 @@ setSelectedMovie(newSelectedMovie) {
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.props.setUser('');
+  //  this.props.setUser('');
   }
 
 
@@ -171,9 +171,7 @@ let mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUser: (user) => {
-      dispatch(setUser(user))
-    },
+    setUser,
     setMovies: (movies) => {
       dispatch(setMovies(movies))
     }

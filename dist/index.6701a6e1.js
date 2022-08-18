@@ -27751,16 +27751,16 @@ class MainView extends _reactDefault.default.Component {
             user: null
         };
     }
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
-            /*this.setState({
+    /*componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      /*this.setState({
         user: localStorage.getItem('user')
-      });*/ this.getMovies(accessToken);
-            this.props.setUser(localStorage.getItem('user'));
-        }
+      });
+      this.getMovies(accessToken);
+      this.props.setUser(localStorage.getItem('user'));
     }
-    setSelectedMovie(newSelectedMovie) {
+}*/ setSelectedMovie(newSelectedMovie) {
         this.setState({
             selectedMovie: newSelectedMovie
         });
@@ -27770,16 +27770,16 @@ class MainView extends _reactDefault.default.Component {
             registered
         });
     }
-    onLoggedIn(authData) {
+    onLoggedIn = (authData)=>{
         /*  console.log(authData);
     this.setState({
       user: authData.user.Username
-    });*/ localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.Username);
-        const { setUser  } = this.props;
-        setUser(authData.user.Username);
+    });*/ //localStorage.setItem('token', authData.token);
+        //localStorage.setItem('user', authData.user.Username);
+        //const { setUser } = this.props;
+        this.props.setUser(authData);
         this.getMovies(authData.token);
-    }
+    };
     getMovies(token) {
         _axiosDefault.default.get('https://brett-flix.herokuapp.com/movies', {
             headers: {
@@ -27794,7 +27794,7 @@ class MainView extends _reactDefault.default.Component {
     onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.props.setUser('');
+    //  this.props.setUser('');
     }
     render() {
         let { user , movies  } = this.props;
@@ -27978,9 +27978,7 @@ let mapStateToProps = (store)=>{
 };
 const mapDispatchToProps = (dispatch)=>{
     return {
-        setUser: (user)=>{
-            dispatch(_actions.setUser(user));
-        },
+        setUser: _actions.setUser,
         setMovies: (movies)=>{
             dispatch(_actions.setMovies(movies));
         }
@@ -34014,25 +34012,15 @@ parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER
 );
 parcelHelpers.export(exports, "SET_USER", ()=>SET_USER
 );
-parcelHelpers.export(exports, "ADD_FAVMOVIE", ()=>ADD_FAVMOVIE
-);
-parcelHelpers.export(exports, "REM_FAVMOVIE", ()=>REM_FAVMOVIE
-);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
 parcelHelpers.export(exports, "setUser", ()=>setUser
 );
-parcelHelpers.export(exports, "addFavMovie", ()=>addFavMovie
-);
-parcelHelpers.export(exports, "remFavMovie", ()=>remFavMovie
-);
 const SET_MOVIES = 'SET_MOVIES';
 const SET_FILTER = 'SET_FILTER';
 const SET_USER = 'SET_USER';
-const ADD_FAVMOVIE = 'ADD_FAVMOVIE';
-const REM_FAVMOVIE = 'REM_FAVMOVIE';
 function setMovies(value) {
     return {
         type: SET_MOVIES,
@@ -34045,21 +34033,9 @@ function setFilter(value) {
         value
     };
 }
-function setUser(user) {
+function setUser(value) {
     return {
         type: SET_USER,
-        user: user?.Username
-    };
-}
-function addFavMovie(value) {
-    return {
-        type: ADD_FAVMOVIE,
-        value
-    };
-}
-function remFavMovie(value) {
-    return {
-        type: REM_FAVMOVIE,
         value
     };
 }
@@ -47404,27 +47380,12 @@ var _userInfo = require("./user-info");
 var _s = $RefreshSig$();
 function ProfileView(props) {
     _s();
-    const [user, setUser] = _react.useState(props.user);
-    const [movies, setMovies] = _react.useState(props.movies);
-    const [favoriteMovies, setFavoriteMovies] = _react.useState([]);
-    const currentUser = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    const getUser = ()=>{
-        _axiosDefault.default.get(`https://brett-flix.herokuapp.com/users/${currentUser}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            setUser(response.data);
-            setFavoriteMovies(response.data.FavoriteMovies);
-        }).catch((error)=>console.error(error)
-        );
-    };
-    _react.useEffect(()=>{
-        getUser();
-    }, []);
+    const [user] = _react.useState(props.user);
+    const [movies] = _react.useState(props.movies);
+    const [favoriteMovies] = _react.useState(props.favoriteMovies);
+    const token = props.token;
     const handleDelete = ()=>{
-        _axiosDefault.default.delete(`https://brett-flix.herokuapp.com/users/${currentUser}`, {
+        _axiosDefault.default.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -47438,21 +47399,21 @@ function ProfileView(props) {
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 46
+            lineNumber: 30
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 47
+                    lineNumber: 31
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 48
+                            lineNumber: 32
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_userInfo.UserInfo, {
@@ -47462,7 +47423,7 @@ function ProfileView(props) {
                             birthday: user.Birthday,
                             __source: {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 49
+                                lineNumber: 33
                             },
                             __self: this
                         })
@@ -47470,14 +47431,14 @@ function ProfileView(props) {
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                         __source: {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 51
+                            lineNumber: 35
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_updateView.UpdateView, {
                             user: user,
                             __source: {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 52
+                                lineNumber: 36
                             },
                             __self: this
                         })
@@ -47488,7 +47449,7 @@ function ProfileView(props) {
                 className: "mt-3",
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 55
+                    lineNumber: 39
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_favoriteMovieView.FavoriteMovieView, {
@@ -47498,7 +47459,7 @@ function ProfileView(props) {
                     token: token,
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 56
+                        lineNumber: 40
                     },
                     __self: this
                 })
@@ -47509,7 +47470,7 @@ function ProfileView(props) {
                 onClick: handleDelete,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 58
+                    lineNumber: 42
                 },
                 __self: this,
                 children: "Delete profile"
@@ -47517,7 +47478,7 @@ function ProfileView(props) {
         ]
     }));
 }
-_s(ProfileView, "SErO/i5fzIPph3MHH+bVoL7AX90=");
+_s(ProfileView, "OZ8kl0w0TZbcFqlSSTdZ+a0rHSY=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");
@@ -48218,10 +48179,6 @@ function movies(state = [], action) {
 function user(state = '', action) {
     switch(action.type){
         case _actions.SET_USER:
-            return action.value || localStorage.getItem('user');
-        case _actions.ADD_FAVMOVIE:
-            return action.value;
-        case _actions.REM_FAVMOVIE:
             return action.value;
         default:
             return state;
