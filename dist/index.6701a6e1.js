@@ -27751,16 +27751,16 @@ class MainView extends _reactDefault.default.Component {
             user: null
         };
     }
-    /*componentDidMount() {
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      /*this.setState({
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            /*this.setState({
         user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-      this.props.setUser(localStorage.getItem('user'));
+      });*/ this.getMovies(accessToken);
+            this.props.setUser(localStorage.getItem('user'));
+        }
     }
-}*/ setSelectedMovie(newSelectedMovie) {
+    setSelectedMovie(newSelectedMovie) {
         this.setState({
             selectedMovie: newSelectedMovie
         });
@@ -27770,16 +27770,16 @@ class MainView extends _reactDefault.default.Component {
             registered
         });
     }
-    onLoggedIn = (authData)=>{
+    onLoggedIn(authData) {
         /*  console.log(authData);
     this.setState({
       user: authData.user.Username
     });*/ //localStorage.setItem('token', authData.token);
         //localStorage.setItem('user', authData.user.Username);
-        //const { setUser } = this.props;
-        this.props.setUser(authData);
+        const { setUser  } = this.props;
+        setUser(authData);
         this.getMovies(authData.token);
-    };
+    }
     getMovies(token) {
         _axiosDefault.default.get('https://brett-flix.herokuapp.com/movies', {
             headers: {
@@ -27794,7 +27794,7 @@ class MainView extends _reactDefault.default.Component {
     onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-    //  this.props.setUser('');
+        this.props.setUser('');
     }
     render() {
         let { user , movies  } = this.props;
@@ -27978,7 +27978,9 @@ let mapStateToProps = (store)=>{
 };
 const mapDispatchToProps = (dispatch)=>{
     return {
-        setUser: _actions.setUser,
+        setUser: (user)=>{
+            dispatch(_actions.setUser(user));
+        },
         setMovies: (movies)=>{
             dispatch(_actions.setMovies(movies));
         }
