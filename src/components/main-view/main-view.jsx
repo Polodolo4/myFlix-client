@@ -60,10 +60,10 @@ setSelectedMovie(newSelectedMovie) {
       user: authData.user.Username
     });*/
 
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
+    //localStorage.setItem('token', authData.token);
+    //localStorage.setItem('user', authData.user.Username);
     const { setUser } = this.props;
-    setUser(authData.user.Username);
+    setUser(authData);
     this.getMovies(authData.token);
   }
 
