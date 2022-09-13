@@ -146,15 +146,15 @@ setSelectedMovie(newSelectedMovie) {
           }
         } />
 
-        <Route path={`/users/${user}`} render={({ history }) => {
+{user?.user?.Username && <Route path={`/users/${user?.user?.Username}`} render={({ history }) => {
              if (!user) return <Col>
              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
            </Col>
-            if (movies.length === 0) return <div className="main-view" />;
+       //     if (movies.length === 0) return <div className="main-view" />;
             return <Col>
               <ProfileView user={user} history={history} movies={movies} onBackClick={() => history.goBack()} />
             </Col>
-          }} />
+          }} /> }
 
         </Row>
       </Router>

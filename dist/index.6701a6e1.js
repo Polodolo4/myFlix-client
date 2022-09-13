@@ -27937,17 +27937,15 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __self: this
                         }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
-                            path: `/users/${user}`,
+                        user?.user?.Username && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                            path: `/users/${user?.user?.Username}`,
                             render: ({ history  })=>{
                                 if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_loginView.LoginView, {
                                         onLoggedIn: (user1)=>this.onLoggedIn(user1)
                                     })
                                 }));
-                                if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
-                                    className: "main-view"
-                                }));
+                                //     if (movies.length === 0) return <div className="main-view" />;
                                 return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_profileView.ProfileView, {
                                         user: user,
@@ -47384,10 +47382,10 @@ var _userInfo = require("./user-info");
 var _s = $RefreshSig$();
 function ProfileView(props) {
     _s();
-    const [user] = _react.useState(props.user);
+    const [user] = _react.useState(props.user.user);
     const [movies] = _react.useState(props.movies);
-    const [favoriteMovies] = _react.useState(props.favoriteMovies);
-    const token = props.token;
+    const [favoriteMovies] = _react.useState(props.user.user.FavoriteMovies);
+    const token = props.user.token;
     const handleDelete = ()=>{
         _axiosDefault.default.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
             headers: {
@@ -47482,7 +47480,7 @@ function ProfileView(props) {
         ]
     }));
 }
-_s(ProfileView, "OZ8kl0w0TZbcFqlSSTdZ+a0rHSY=");
+_s(ProfileView, "qSPIXzFdgViJt6UhHJjfsj8VGNo=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");

@@ -9,10 +9,10 @@ import { UpdateView } from './update-view';
 import { UserInfo } from './user-info';
 
 export function ProfileView(props) {
-  const [ user ] = useState(props.user);
+  const [ user ] = useState(props.user.user);
   const [ movies ] = useState(props.movies);
-  const [ favoriteMovies ] = useState(props.favoriteMovies);
-  const token = props.token;
+  const [ favoriteMovies ] = useState(props.user.user.FavoriteMovies);
+  const token = props.user.token;
 
   const handleDelete = () => {
     axios.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
