@@ -27744,23 +27744,23 @@ var _directorView = require("../director-view/director-view");
 var _profileView = require("../profile-view/profile-view");
 var _reactBootstrap = require("react-bootstrap");
 var _navbar = require("../navbar/navbar");
+var _navbarDefault = parcelHelpers.interopDefault(_navbar);
 class MainView extends _reactDefault.default.Component {
     constructor(){
         super();
         this.state = {
-            user: null
         };
     }
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
-            /*this.setState({
+    /*componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      /*this.setState({
         user: localStorage.getItem('user')
-      });*/ this.getMovies(accessToken);
-            this.props.setUser(localStorage.getItem('user'));
-        }
+      });
+      this.getMovies(accessToken);
+      this.props.setUser(localStorage.getItem('user'));
     }
-    setSelectedMovie(newSelectedMovie) {
+}*/ setSelectedMovie(newSelectedMovie) {
         this.setState({
             selectedMovie: newSelectedMovie
         });
@@ -27805,8 +27805,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this,
             children: [
-                /*#__PURE__*/ _jsxRuntime.jsx(_navbar.Menubar, {
-                    user: user,
+                /*#__PURE__*/ _jsxRuntime.jsx(_navbarDefault.default, {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 96
@@ -34024,18 +34023,21 @@ const SET_MOVIES = 'SET_MOVIES';
 const SET_FILTER = 'SET_FILTER';
 const SET_USER = 'SET_USER';
 function setMovies(value) {
+    console.log('SET_MOVIES action triggered');
     return {
         type: SET_MOVIES,
         value
     };
 }
 function setFilter(value) {
+    console.log('SET_FILTER action triggered');
     return {
         type: SET_FILTER,
         value
     };
 }
 function setUser(value) {
+    console.log('SET_USER action triggered');
     return {
         type: SET_USER,
         value
@@ -47510,7 +47512,7 @@ var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
 function FavoriteMovieView(props) {
     const { movies , currentUser , token , favoriteMovies  } = props;
-    const userFavorites = movies.filter((movie)=>{
+    const userFavorites = user.filter((movie)=>{
         return favoriteMovies.includes(movie._id);
     });
     const handleMovieDelete = (movieId)=>{
@@ -48037,22 +48039,18 @@ $parcel$ReactRefreshHelpers$1bb2.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Menubar", ()=>Menubar
-);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRedux = require("react-redux");
 var _reactBootstrap = require("react-bootstrap");
+var _actions = require("../../actions/actions");
 function Menubar({ user  }) {
     const onLoggedOut = ()=>{
         localStorage.clear();
         window.open("/", "_self");
     };
-    const isAuth = ()=>{
-        if (typeof window == "undefined") return false;
-        if (localStorage.getItem("token")) return localStorage.getItem("token");
-        else return false;
-    };
+    const token = user.token;
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
         className: "main-nav",
         sticky: "top",
@@ -48061,13 +48059,13 @@ function Menubar({ user  }) {
         variant: "dark",
         __source: {
             fileName: "src/components/navbar/navbar.jsx",
-            lineNumber: 24
+            lineNumber: 18
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/navbar/navbar.jsx",
-                lineNumber: 25
+                lineNumber: 19
             },
             __self: this,
             children: [
@@ -48076,7 +48074,7 @@ function Menubar({ user  }) {
                     href: "/",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 26
+                        lineNumber: 20
                     },
                     __self: this,
                     children: "BrettFlix"
@@ -48085,7 +48083,7 @@ function Menubar({ user  }) {
                     "aria-controls": "resposive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 27
+                        lineNumber: 21
                     },
                     __self: this
                 }),
@@ -48093,50 +48091,50 @@ function Menubar({ user  }) {
                     id: "reponsive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 28
+                        lineNumber: 22
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
                         className: "ml-auto",
                         __source: {
                             fileName: "src/components/navbar/navbar.jsx",
-                            lineNumber: 29
+                            lineNumber: 23
                         },
                         __self: this,
                         children: [
-                            isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                                href: `/users/${user}`,
+                            !!token && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                href: `/users/${user.user.Username}`,
+                                __source: {
+                                    fileName: "src/components/navbar/navbar.jsx",
+                                    lineNumber: 25
+                                },
+                                __self: this,
+                                children: user.user.Username
+                            }),
+                            !!token && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                variant: "link",
+                                onClick: onLoggedOut,
+                                __source: {
+                                    fileName: "src/components/navbar/navbar.jsx",
+                                    lineNumber: 28
+                                },
+                                __self: this,
+                                children: "Logout"
+                            }),
+                            !!!token && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                                href: "/",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
                                     lineNumber: 31
                                 },
                                 __self: this,
-                                children: user
-                            }),
-                            isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                variant: "link",
-                                onClick: onLoggedOut,
-                                __source: {
-                                    fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 34
-                                },
-                                __self: this,
-                                children: "Logout"
-                            }),
-                            !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                                href: "/",
-                                __source: {
-                                    fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 37
-                                },
-                                __self: this,
                                 children: "Sign-in"
                             }),
-                            !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
+                            !!!token && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
                                 href: "/register",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 40
+                                    lineNumber: 34
                                 },
                                 __self: this,
                                 children: "Sign-up"
@@ -48149,6 +48147,23 @@ function Menubar({ user  }) {
     }));
 }
 _c = Menubar;
+let mapStateToProps = (store)=>{
+    return {
+        movies: store.movies,
+        user: store.user
+    };
+};
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        setUser: (user)=>{
+            dispatch(_actions.setUser(user));
+        },
+        setMovies: (movies)=>{
+            dispatch(_actions.setMovies(movies));
+        }
+    };
+};
+exports.default = _reactRedux.connect(mapStateToProps, mapDispatchToProps)(Menubar);
 var _c;
 $RefreshReg$(_c, "Menubar");
 
@@ -48157,7 +48172,7 @@ $RefreshReg$(_c, "Menubar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"btgQW":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap":"h2YVd","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"btgQW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _redux = require("redux");
@@ -48165,6 +48180,7 @@ var _actions = require("../actions/actions");
 function visibilityFilter(state = '', action) {
     switch(action.type){
         case _actions.SET_FILTER:
+            console.log('SET_FILTER reducer reached');
             return action.value;
         default:
             return state;
@@ -48173,6 +48189,7 @@ function visibilityFilter(state = '', action) {
 function movies(state = [], action) {
     switch(action.type){
         case _actions.SET_MOVIES:
+            console.log('SET_MOVIES reducer reached');
             return action.value;
         default:
             return state;
@@ -48181,6 +48198,7 @@ function movies(state = [], action) {
 function user(state = '', action) {
     switch(action.type){
         case _actions.SET_USER:
+            console.log('SET_USER reducer reached');
             return action.value;
         default:
             return state;

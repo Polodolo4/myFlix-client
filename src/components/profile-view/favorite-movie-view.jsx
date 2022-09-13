@@ -9,7 +9,7 @@ export function FavoriteMovieView(props) {
 
  const { movies, currentUser, token, favoriteMovies } = props;
 
-const userFavorites = movies.filter((movie) => {
+const userFavorites = user.filter((movie) => {
   return favoriteMovies.includes(movie._id);
 });
 

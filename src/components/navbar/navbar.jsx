@@ -1,23 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
-export function Menubar ({user}) {
+import { setMovies, setUser } from '../../actions/actions';
+
+function Menubar ({user}) {
 
 const onLoggedOut = () => {
         localStorage.clear();
         window.open("/", "_self");
     }
 
-const isAuth = () => {
-    if(typeof window == "undefined") {
-        return false;
-    }
-    if (localStorage.getItem("token")) {
-        return localStorage.getItem("token");
-    } else {
-        return false;
-    }
-};
+const token = user.token
 
 return (
 
@@ -27,16 +21,16 @@ return (
         <Navbar.Toggle aria-controls="resposive-navbar-nav" />
         <Navbar.Collapse id="reponsive-navbar-nav">
             <Nav className="ml-auto">
-            {isAuth() && (
-                <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>
+            {!!token && (
+                <Nav.Link href={`/users/${user.user.Username}`}>{user.user.Username}</Nav.Link>
                 )}
-            {isAuth() && (
+            {!!token && (
                 <Button variant="link" onClick={onLoggedOut}>Logout</Button>
             )}
-            {!isAuth() && (
+            {!!!token && (
               <Nav.Link href={"/"}>Sign-in</Nav.Link>
             )}
-             {!isAuth() && (
+             {!!!token && (
               <Nav.Link href={"/register"}>Sign-up</Nav.Link>
             )}
             </Nav>
@@ -44,4 +38,24 @@ return (
     </Container>
 </Navbar>
     );
-}
+};
+
+let mapStateToProps = store => {
+    return { 
+      movies: store.movies,
+      user: store.user,
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      setUser: (user) => {
+        dispatch(setUser(user))
+      },
+      setMovies: (movies) => {
+        dispatch(setMovies(movies))
+      }
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps) (Menubar);
