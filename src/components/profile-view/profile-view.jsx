@@ -12,7 +12,7 @@ export function ProfileView(props) {
   const [ user ] = useState(props.user.user);
   const [ movies ] = useState(props.movies);
   const [ favoriteMovies ] = useState(props.user.user.FavoriteMovies);
-  const token = props.user.token;
+  const token = user.token;
 
   const handleDelete = () => {
     axios.delete(`https://brett-flix.herokuapp.com/users/${user}`, {

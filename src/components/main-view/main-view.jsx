@@ -162,10 +162,10 @@ setSelectedMovie(newSelectedMovie) {
   }
 }
 
-let mapStateToProps = store => {
+let mapStateToProps = props => {
   return { 
-    movies: store.movies,
-    user: store.user,
+    movies: props.movies,
+    user: props.user,
   }
 }
 

@@ -27967,10 +27967,10 @@ class MainView extends _reactDefault.default.Component {
         }));
     }
 }
-let mapStateToProps = (store)=>{
+let mapStateToProps = (props)=>{
     return {
-        movies: store.movies,
-        user: store.user
+        movies: props.movies,
+        user: props.user
     };
 };
 const mapDispatchToProps = (dispatch)=>{
@@ -47385,7 +47385,7 @@ function ProfileView(props) {
     const [user] = _react.useState(props.user.user);
     const [movies] = _react.useState(props.movies);
     const [favoriteMovies] = _react.useState(props.user.user.FavoriteMovies);
-    const token = props.user.token;
+    const token = user.token;
     const handleDelete = ()=>{
         _axiosDefault.default.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
             headers: {
