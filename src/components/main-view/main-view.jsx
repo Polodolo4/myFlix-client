@@ -18,7 +18,7 @@ import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
 
 import { Row, Col } from 'react-bootstrap';
-import { Menubar } from '../navbar/navbar';
+import  Menubar  from '../navbar/navbar';
 
 
 class MainView extends React.Component {
@@ -27,20 +27,20 @@ class MainView extends React.Component {
     super();
 
     this.state = {
-        user: null
+      //  user: null
     };
 }
 
-componentDidMount() {
+/*componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       /*this.setState({
         user: localStorage.getItem('user')
-      });*/
+      });
       this.getMovies(accessToken);
       this.props.setUser(localStorage.getItem('user'));
     }
-}
+}*/
 
 setSelectedMovie(newSelectedMovie) {
     this.setState({
@@ -93,7 +93,7 @@ setSelectedMovie(newSelectedMovie) {
 
     return (
       <Router>
-        <Menubar user={user}/>
+        <Menubar/>
         <Row className="main-view justify-content-md-center">
 
         <Route exact path="/" render={() => {
@@ -146,15 +146,15 @@ setSelectedMovie(newSelectedMovie) {
           }
         } />
 
-        <Route path={`/users/${user}`} render={({ history }) => {
+{user?.user?.Username && <Route path={`/users/${user?.user?.Username}`} render={({ history }) => {
              if (!user) return <Col>
              <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
            </Col>
-            if (movies.length === 0) return <div className="main-view" />;
+       //     if (movies.length === 0) return <div className="main-view" />;
             return <Col>
               <ProfileView user={user} history={history} movies={movies} onBackClick={() => history.goBack()} />
             </Col>
-          }} />
+          }} /> }
 
         </Row>
       </Router>
@@ -162,10 +162,10 @@ setSelectedMovie(newSelectedMovie) {
   }
 }
 
-let mapStateToProps = store => {
+let mapStateToProps = props => {
   return { 
-    movies: store.movies,
-    user: store.user,
+    movies: props.movies,
+    user: props.user,
   }
 }
 
