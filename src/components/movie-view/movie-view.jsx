@@ -2,21 +2,26 @@ import React from 'react';
 import { Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap'; 
 import axios from 'axios';
 
+import { setMovies, setUser, setFavorite,} from '../../actions/actions';
+
 import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux';
 
 import './movie-view.scss';
 
-export class MovieView extends React.Component {
+class MovieView extends React.Component {
 
   constructor() {
     super();
   }
 
-  getUser(token) {
-    let user = localStorage.getItem('user');
+  getUser() {
+    const username = this.props.user.user.Username
+    const accessToken = this.props.user.token
     axios
-      .get(`https://brett-flix.herokuapp.com/users/${user}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      .get(`https://brett-flix.herokuapp.com/users/${username}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
         //assign the result to the state
@@ -27,29 +32,33 @@ export class MovieView extends React.Component {
       .catch((e) => console.log(e));
   }
   componentDidMount() {
-    const accessToken = localStorage.getItem('token');
-    this.getUser(accessToken);
+    console.log(this.props.user)
+    this.getUser();
   }
 
   
     // Add Favorite movie 
     addFavMovie = () => {
-      let token = localStorage.getItem('token');
-      let user = localStorage.getItem('user');
+      const username = this.props.user.user.Username
+      const accessToken = this.props.user.token
       let userFavMovies = this.state.FavoriteMovies;
       let isFav = userFavMovies.includes(this.props.movie._id);
       if (!isFav) {
-        axios.post(`https://brett-flix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {},
+        axios.post(`https://brett-flix.herokuapp.com/users/${username}/movies/${this.props.movie._id}`, {},
           {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${accessToken}`
             }
           }).then((response) => {
+            this.setState({
+              FavoriteMovies: response.data.FavoriteMovies,
+            });
+            this.props.setFavorite(response.data);
             console.log(response.data);
             alert(
               `${this.props.movie.Title} has been added to your favorites!`
             );
-            window.open(`/movies/${this.props.movie._id}`, '_self');
+        //    window.open(`/movies/${this.props.movie._id}`, '_self');
           })
       } else if (isFav) {
         alert(
@@ -60,20 +69,24 @@ export class MovieView extends React.Component {
   
     // Delete a movie from Favorite movies 
     removeFavMovie = () => {
-      let token = localStorage.getItem('token');
-      let user = localStorage.getItem('user');
+      const username = this.props.user.user.Username
+      const accessToken = this.props.user.token
       let userFavMovies = this.state.FavoriteMovies;
       let isFav = userFavMovies.includes(this.props.movie._id);
       if (isFav) {
-      axios.delete(`https://brett-flix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`,
+      axios.delete(`https://brett-flix.herokuapp.com/users/${username}/movies/${this.props.movie._id}`,
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${accessToken}` },
         }).then((response) => {
+          this.setState({
+            FavoriteMovies: response.data.FavoriteMovies,
+          });
+          this.props.setFavorite(response.data);
           console.log(response.data);
           alert(
             `${this.props.movie.Title} has been removed from your favorites!`
           );
-          window.open(`/movies/${this.props.movie._id}`, '_self');
+        //  window.open(`/movies/${this.props.movie._id}`, '_self');
         })
       } else if (!isFav) {
         alert(
@@ -113,3 +126,26 @@ export class MovieView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = store => {
+  return { 
+    movies: store.movies,
+    user: store.user,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setUser: (user) => {
+      dispatch(setUser(user))
+    },
+    setMovies: (movies) => {
+      dispatch(setMovies(movies))
+    },
+    setFavorite: (FavoriteMovies) => {
+      dispatch(setFavorite(FavoriteMovies))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (MovieView);

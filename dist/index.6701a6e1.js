@@ -27739,6 +27739,7 @@ var _registrationView = require("../registration-view/registration-view");
 var _loginView = require("../login-view/login-view");
 //import { MovieCard } from '../movie-card/movie-card';
 var _movieView = require("../movie-view/movie-view");
+var _movieViewDefault = parcelHelpers.interopDefault(_movieView);
 var _genreView = require("../genre-view/genre-view");
 var _directorView = require("../director-view/director-view");
 var _profileView = require("../profile-view/profile-view");
@@ -27872,7 +27873,8 @@ class MainView extends _reactDefault.default.Component {
                                 }));
                                 return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                                     md: 8,
-                                    children: /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
+                                    children: /*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default, {
+                                        user: user,
                                         movie: movies.find((m)=>m._id === match.params.movieId
                                         ),
                                         onBackClick: ()=>history.goBack()
@@ -34011,33 +34013,44 @@ parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER
 );
 parcelHelpers.export(exports, "SET_USER", ()=>SET_USER
 );
+parcelHelpers.export(exports, "SET_FAVORITE", ()=>SET_FAVORITE
+);
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
 parcelHelpers.export(exports, "setUser", ()=>setUser
 );
-const SET_MOVIES = 'SET_MOVIES';
-const SET_FILTER = 'SET_FILTER';
-const SET_USER = 'SET_USER';
+parcelHelpers.export(exports, "setFavorite", ()=>setFavorite
+);
+const SET_MOVIES = "SET_MOVIES";
+const SET_FILTER = "SET_FILTER";
+const SET_USER = "SET_USER";
+const SET_FAVORITE = "SET_FAVORITE";
 function setMovies(value) {
-    console.log('SET_MOVIES action triggered');
+    console.log("SET_MOVIES action triggered");
     return {
         type: SET_MOVIES,
         value
     };
 }
 function setFilter(value) {
-    console.log('SET_FILTER action triggered');
+    console.log("SET_FILTER action triggered");
     return {
         type: SET_FILTER,
         value
     };
 }
 function setUser(value) {
-    console.log('SET_USER action triggered');
+    console.log("SET_USER action triggered");
     return {
         type: SET_USER,
+        value
+    };
+}
+function setFavorite(value) {
+    return {
+        type: SET_FAVORITE,
         value
     };
 }
@@ -46979,25 +46992,26 @@ $parcel$ReactRefreshHelpers$3741.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieView", ()=>MovieView
-);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _actions = require("../../actions/actions");
 var _reactRouterDom = require("react-router-dom");
+var _reactRedux = require("react-redux");
 var _movieViewScss = require("./movie-view.scss");
 class MovieView extends _reactDefault.default.Component {
     constructor(){
         super();
     }
-    getUser(token) {
-        let user = localStorage.getItem('user');
-        _axiosDefault.default.get(`https://brett-flix.herokuapp.com/users/${user}`, {
+    getUser() {
+        const username = this.props.user.user.Username;
+        const accessToken = this.props.user.token;
+        _axiosDefault.default.get(`https://brett-flix.herokuapp.com/users/${username}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${accessToken}`
             }
         }).then((response)=>{
             //assign the result to the state
@@ -47008,41 +47022,49 @@ class MovieView extends _reactDefault.default.Component {
         );
     }
     componentDidMount() {
-        const accessToken = localStorage.getItem('token');
-        this.getUser(accessToken);
+        console.log(this.props.user);
+        this.getUser();
     }
     // Add Favorite movie 
     addFavMovie = ()=>{
-        let token = localStorage.getItem('token');
-        let user = localStorage.getItem('user');
+        const username = this.props.user.user.Username;
+        const accessToken = this.props.user.token;
         let userFavMovies = this.state.FavoriteMovies;
         let isFav = userFavMovies.includes(this.props.movie._id);
-        if (!isFav) _axiosDefault.default.post(`https://brett-flix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {
+        if (!isFav) _axiosDefault.default.post(`https://brett-flix.herokuapp.com/users/${username}/movies/${this.props.movie._id}`, {
         }, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${accessToken}`
             }
         }).then((response)=>{
+            this.setState({
+                FavoriteMovies: response.data.FavoriteMovies
+            });
+            this.props.setFavorite(response.data);
             console.log(response.data);
             alert(`${this.props.movie.Title} has been added to your favorites!`);
-            window.open(`/movies/${this.props.movie._id}`, '_self');
+        //    window.open(`/movies/${this.props.movie._id}`, '_self');
         });
         else if (isFav) alert(`${this.props.movie.Title} is already in your favorites!`);
     };
     // Delete a movie from Favorite movies 
     removeFavMovie = ()=>{
-        let token = localStorage.getItem('token');
-        let user = localStorage.getItem('user');
+        const username = this.props.user.user.Username;
+        const accessToken = this.props.user.token;
         let userFavMovies = this.state.FavoriteMovies;
         let isFav = userFavMovies.includes(this.props.movie._id);
-        if (isFav) _axiosDefault.default.delete(`https://brett-flix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {
+        if (isFav) _axiosDefault.default.delete(`https://brett-flix.herokuapp.com/users/${username}/movies/${this.props.movie._id}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${accessToken}`
             }
         }).then((response)=>{
+            this.setState({
+                FavoriteMovies: response.data.FavoriteMovies
+            });
+            this.props.setFavorite(response.data);
             console.log(response.data);
             alert(`${this.props.movie.Title} has been removed from your favorites!`);
-            window.open(`/movies/${this.props.movie._id}`, '_self');
+        //  window.open(`/movies/${this.props.movie._id}`, '_self');
         });
         else if (!isFav) alert(`${this.props.movie.Title} isn't in your favorites!`);
     };
@@ -47051,31 +47073,31 @@ class MovieView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 89
+                lineNumber: 102
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 90
+                    lineNumber: 103
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 91
+                        lineNumber: 104
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.CardGroup, {
                         __source: {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 92
+                            lineNumber: 105
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
                             __source: {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 93
+                                lineNumber: 106
                             },
                             __self: this,
                             children: [
@@ -47085,21 +47107,21 @@ class MovieView extends _reactDefault.default.Component {
                                     src: `https://brett-flix.herokuapp.com/${movie.ImagePath}`,
                                     __source: {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 94
+                                        lineNumber: 107
                                     },
                                     __self: this
                                 }),
                                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
                                     __source: {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 95
+                                        lineNumber: 108
                                     },
                                     __self: this,
                                     children: [
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
                                             __source: {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 96
+                                                lineNumber: 109
                                             },
                                             __self: this,
                                             children: movie.Title
@@ -47107,7 +47129,7 @@ class MovieView extends _reactDefault.default.Component {
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Text, {
                                             __source: {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 97
+                                                lineNumber: 110
                                             },
                                             __self: this,
                                             children: movie.Description
@@ -47116,7 +47138,7 @@ class MovieView extends _reactDefault.default.Component {
                                             to: `/directors/${movie.Director.Name}`,
                                             __source: {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 98
+                                                lineNumber: 111
                                             },
                                             __self: this,
                                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -47124,7 +47146,7 @@ class MovieView extends _reactDefault.default.Component {
                                                 sz: "lg",
                                                 __source: {
                                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                                    lineNumber: 99
+                                                    lineNumber: 112
                                                 },
                                                 __self: this,
                                                 children: "Director"
@@ -47134,7 +47156,7 @@ class MovieView extends _reactDefault.default.Component {
                                             to: `/genres/${movie.Genre.Name}`,
                                             __source: {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 101
+                                                lineNumber: 114
                                             },
                                             __self: this,
                                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -47142,7 +47164,7 @@ class MovieView extends _reactDefault.default.Component {
                                                 sz: "lg",
                                                 __source: {
                                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                                    lineNumber: 102
+                                                    lineNumber: 115
                                                 },
                                                 __self: this,
                                                 children: "Genre"
@@ -47153,7 +47175,7 @@ class MovieView extends _reactDefault.default.Component {
                                             onClick: this.addFavMovie,
                                             __source: {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 104
+                                                lineNumber: 117
                                             },
                                             __self: this,
                                             children: "Add to favorites!"
@@ -47163,7 +47185,7 @@ class MovieView extends _reactDefault.default.Component {
                                             onClick: this.removeFavMovie,
                                             __source: {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 105
+                                                lineNumber: 118
                                             },
                                             __self: this,
                                             children: "Remove!"
@@ -47175,7 +47197,7 @@ class MovieView extends _reactDefault.default.Component {
                                             variant: "danger",
                                             __source: {
                                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                                lineNumber: 106
+                                                lineNumber: 119
                                             },
                                             __self: this,
                                             children: "Back"
@@ -47190,13 +47212,33 @@ class MovieView extends _reactDefault.default.Component {
         }));
     }
 }
+let mapStateToProps = (store)=>{
+    return {
+        movies: store.movies,
+        user: store.user
+    };
+};
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        setUser: (user)=>{
+            dispatch(_actions.setUser(user));
+        },
+        setMovies: (movies)=>{
+            dispatch(_actions.setMovies(movies));
+        },
+        setFavorite: (FavoriteMovies)=>{
+            dispatch(_actions.setFavorite(FavoriteMovies));
+        }
+    };
+};
+exports.default = _reactRedux.connect(mapStateToProps, mapDispatchToProps)(MovieView);
 
   $parcel$ReactRefreshHelpers$3741.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","axios":"iYoWk","react-router-dom":"cpyQW","./movie-view.scss":"kvL93","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"kvL93":[function() {},{}],"8WCoL":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","axios":"iYoWk","../../actions/actions":"1Ttfj","react-router-dom":"cpyQW","react-redux":"2L0if","./movie-view.scss":"kvL93","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"kvL93":[function() {},{}],"8WCoL":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$5f0a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48175,10 +48217,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _redux = require("redux");
 var _actions = require("../actions/actions");
-function visibilityFilter(state = '', action) {
+function visibilityFilter(state = "", action) {
     switch(action.type){
         case _actions.SET_FILTER:
-            console.log('SET_FILTER reducer reached');
+            console.log("SET_FILTER reducer reached");
             return action.value;
         default:
             return state;
@@ -48187,16 +48229,25 @@ function visibilityFilter(state = '', action) {
 function movies(state = [], action) {
     switch(action.type){
         case _actions.SET_MOVIES:
-            console.log('SET_MOVIES reducer reached');
+            console.log("SET_MOVIES reducer reached");
             return action.value;
         default:
             return state;
     }
 }
-function user(state = '', action) {
+function user(state = "", action) {
     switch(action.type){
         case _actions.SET_USER:
-            console.log('SET_USER reducer reached');
+            console.log("SET_USER reducer reached");
+            return action.value;
+        default:
+            return state;
+    }
+}
+function favorite(state = [], action) {
+    switch(action.type){
+        case _actions.SET_FAVORITE:
+            console.log("SET_FAVORITE reducer reached");
             return action.value;
         default:
             return state;
@@ -48205,7 +48256,8 @@ function user(state = '', action) {
 const moviesApp = _redux.combineReducers({
     visibilityFilter,
     movies,
-    user
+    user,
+    favorite
 });
 exports.default = moviesApp;
 
