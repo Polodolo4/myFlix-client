@@ -47427,7 +47427,7 @@ function ProfileView(props) {
     const [user] = _react.useState(props.user.user);
     const [movies] = _react.useState(props.movies);
     const [favoriteMovies] = _react.useState(props.user.user.FavoriteMovies);
-    const token = user.token;
+    const token = props.user.token;
     const handleDelete = ()=>{
         _axiosDefault.default.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
             headers: {
@@ -47499,7 +47499,7 @@ function ProfileView(props) {
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_favoriteMovieView.FavoriteMovieView, {
                     movies: movies,
                     favoriteMovies: favoriteMovies,
-                    currentUser: currentUser,
+                    currentUser: user.Username,
                     token: token,
                     __source: {
                         fileName: "src/components/profile-view/profile-view.jsx",
@@ -47552,7 +47552,7 @@ var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
 function FavoriteMovieView(props) {
     const { movies , currentUser , token , favoriteMovies  } = props;
-    const userFavorites = user.filter((movie)=>{
+    const userFavorites = movies.filter((movie)=>{
         return favoriteMovies.includes(movie._id);
     });
     const handleMovieDelete = (movieId)=>{
@@ -48084,6 +48084,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRedux = require("react-redux");
 var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
 var _actions = require("../../actions/actions");
 function Menubar({ user  }) {
     const onLoggedOut = ()=>{
@@ -48099,13 +48100,13 @@ function Menubar({ user  }) {
         variant: "dark",
         __source: {
             fileName: "src/components/navbar/navbar.jsx",
-            lineNumber: 18
+            lineNumber: 21
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/navbar/navbar.jsx",
-                lineNumber: 19
+                lineNumber: 22
             },
             __self: this,
             children: [
@@ -48114,7 +48115,7 @@ function Menubar({ user  }) {
                     href: "/",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 20
+                        lineNumber: 23
                     },
                     __self: this,
                     children: "BrettFlix"
@@ -48123,7 +48124,7 @@ function Menubar({ user  }) {
                     "aria-controls": "resposive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 21
+                        lineNumber: 24
                     },
                     __self: this
                 }),
@@ -48131,22 +48132,22 @@ function Menubar({ user  }) {
                     id: "reponsive-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 22
+                        lineNumber: 25
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Nav, {
                         className: "ml-auto",
                         __source: {
                             fileName: "src/components/navbar/navbar.jsx",
-                            lineNumber: 23
+                            lineNumber: 26
                         },
                         __self: this,
                         children: [
-                            !!token && /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav.Link, {
-                                href: `/users/${user.user.Username}`,
+                            !!token && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                                to: `/users/${user.user.Username}`,
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 25
+                                    lineNumber: 28
                                 },
                                 __self: this,
                                 children: user.user.Username
@@ -48156,7 +48157,7 @@ function Menubar({ user  }) {
                                 onClick: onLoggedOut,
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 28
+                                    lineNumber: 31
                                 },
                                 __self: this,
                                 children: "Logout"
@@ -48165,7 +48166,7 @@ function Menubar({ user  }) {
                                 href: "/",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 31
+                                    lineNumber: 34
                                 },
                                 __self: this,
                                 children: "Sign-in"
@@ -48174,7 +48175,7 @@ function Menubar({ user  }) {
                                 href: "/register",
                                 __source: {
                                     fileName: "src/components/navbar/navbar.jsx",
-                                    lineNumber: 34
+                                    lineNumber: 37
                                 },
                                 __self: this,
                                 children: "Sign-up"
@@ -48212,7 +48213,7 @@ $RefreshReg$(_c, "Menubar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap":"h2YVd","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"btgQW":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap":"h2YVd","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","react-router-dom":"cpyQW"}],"btgQW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _redux = require("redux");
