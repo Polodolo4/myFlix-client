@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import {
+  Link
+} from "react-router-dom";
 
 import { setMovies, setUser } from '../../actions/actions';
 
@@ -22,7 +25,7 @@ return (
         <Navbar.Collapse id="reponsive-navbar-nav">
             <Nav className="ml-auto">
             {!!token && (
-                <Nav.Link href={`/users/${user.user.Username}`}>{user.user.Username}</Nav.Link>
+                <Link to={`/users/${user.user.Username}`}>{user.user.Username}</Link>
                 )}
             {!!token && (
                 <Button variant="link" onClick={onLoggedOut}>Logout</Button>

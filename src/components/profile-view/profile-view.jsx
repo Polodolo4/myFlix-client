@@ -12,7 +12,7 @@ export function ProfileView(props) {
   const [ user ] = useState(props.user.user);
   const [ movies ] = useState(props.movies);
   const [ favoriteMovies ] = useState(props.user.user.FavoriteMovies);
-  const token = user.token;
+  const token = props.user.token;
 
   const handleDelete = () => {
     axios.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
@@ -37,7 +37,7 @@ export function ProfileView(props) {
         </Col>
       </Row>
         <Row className="mt-3">
-      <FavoriteMovieView  movies={movies}  favoriteMovies={favoriteMovies}  currentUser={currentUser}  token={token}/>
+      <FavoriteMovieView  movies={movies}  favoriteMovies={favoriteMovies}  currentUser={user.Username}  token={token}/>
         </Row>
         <Button className="d-block mt-5" variant="danger" onClick={handleDelete}>Delete profile</Button>
     </Container>
