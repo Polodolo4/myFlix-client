@@ -15,7 +15,7 @@ export function ProfileView(props) {
   const token = props.user.token;
 
   const handleDelete = () => {
-    axios.delete(`https://brett-flix.herokuapp.com/users/${user}`, {
+    axios.delete(`https://brett-flix.herokuapp.com/users/${user.Username}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(() => {
